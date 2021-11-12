@@ -78,25 +78,20 @@ flex-direction: column;
     const TV_MODE   = new URL(window.location.href).searchParams.get('mode') == 'TV';
 
     if ( TV_MODE )  {
-      setTimeout(
-        () => {
-          // if TV_MODE, increase daily calendar iframe's width / height
-          $( '#daily-calendar' ).width ( 1024 ).height( 576 );
+      $( 'body' ).css( 'overflow', 'hidden' ).css( 'padding', '120px 0 0 0' );
 
-          // body padding is 240
-          const SCALE_Y   = (window.innerHeight - 290) / $( '#daily-calendar' ).height();
+      // if TV_MODE, increase daily calendar iframe's width / height
+      $( '#daily-calendar' ).width ( 1024 ).height( 576 );
 
-          // 50px of padding (25px per side)
-          const SCALE_X   = (window.innerWidth - 50) / $( '#daily-calendar' ).width();
+      // body padding is 240
+      const SCALE_Y   = (window.innerHeight - 290) / $( '#daily-calendar' ).height();
 
-          $( '#daily-calendar' ).css( 'transform', `scaleX(${SCALE_X}) scaleY(${SCALE_Y})` );
+      // 50px of padding (25px per side)
+      const SCALE_X   = (window.innerWidth - 50) / $( '#daily-calendar' ).width();
 
-          $( '.calendars' ).css( 'display', 'none' );
+      $( '#daily-calendar' ).css( 'transform', `scaleX(${SCALE_X}) scaleY(1)` );
 
-          $( 'body' ).css( 'overflow', 'hidden' );
-        },
-        1500
-      )
+      $( '.calendars' ).css( 'display', 'none' );
     }
   </script>
 
