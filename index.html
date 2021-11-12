@@ -39,7 +39,7 @@ flex-direction: column;
     
   </div>
 
-  <section>
+  <section class='calendars'>
     <p style="text-align: center;">Weekly Calendar</p>
   </section>
 
@@ -78,20 +78,25 @@ flex-direction: column;
     const TV_MODE   = new URL(window.location.href).searchParams.get('mode') == 'TV';
 
     if ( TV_MODE )  {
-      // if TV_MODE, increase daily calendar iframe's width / height
-      $( '#daily-calendar' ).width ( 1024 ).height( 576 );
+      setTimeout(
+        () => {
+          // if TV_MODE, increase daily calendar iframe's width / height
+          $( '#daily-calendar' ).width ( 1024 ).height( 576 );
 
-      // body padding is 240
-      const SCALE_Y   = (window.innerHeight - 240) / $( '#daily-calendar' ).height();
+          // body padding is 240
+          const SCALE_Y   = (window.innerHeight - 290) / $( '#daily-calendar' ).height();
 
-      // 50px of padding (25px per side)
-      const SCALE_X   = (window.innerWidth - 50) / $( '#daily-calendar' ).width();
+          // 50px of padding (25px per side)
+          const SCALE_X   = (window.innerWidth - 50) / $( '#daily-calendar' ).width();
 
-      $( '#daily-calendar' ).css( 'transform', `scaleX(${SCALE_X}) scaleY(${SCALE_Y})` );
+          $( '#daily-calendar' ).css( 'transform', `scaleX(${SCALE_X}) scaleY(${SCALE_Y})` );
 
-      $( '.calendars' ).css( 'display', 'none' );
+          $( '.calendars' ).css( 'display', 'none' );
 
-      $( 'body' ).css( 'overflow', 'hidden' );
+          $( 'body' ).css( 'overflow', 'hidden' );
+        },
+        1500
+      )
     }
   </script>
 
